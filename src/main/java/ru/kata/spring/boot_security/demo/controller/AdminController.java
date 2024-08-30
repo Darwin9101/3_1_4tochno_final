@@ -24,14 +24,10 @@ public class AdminController {
 
     @GetMapping
     public String adminPage(ModelMap model, Principal principal) {
-        List<User> users = userService.getAllUsers();
-        model.addAttribute("users", users);
-
         if (principal != null) {
             User user = userService.getUserByName(principal.getName());
             model.addAttribute("loggedInAdmin", user);
         }
-
         return "admin";
     }
 }
